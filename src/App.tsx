@@ -33,6 +33,41 @@ function B(r: number) {
 export default function App() {
   // Finite 6-book shelf (Book 1 to 6 without looping). Start on Book I (0)
   const scrollRef = useRef<number>(0);
+    useEffect(() => {
+    const audio = new Audio('/assets/La Marseillaise Instrumental 6 couplets.mp3');
+    audio.loop = true;
+    audio.volume = 0.35;
+
+    audio.addEventListener('ended', () => {
+      audio.currentTime = 0;
+      audio.play().catch(() => {});
+    });
+
+    let started = false;
+    const handleClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target && target.innerText && target.innerText.includes('AUDIO:')) {
+        started = true;
+        if (audio.paused) {
+          audio.play().catch(() => {});
+        } else {
+          audio.pause();
+        }
+        return;
+      }
+      if (!started) {
+        started = true;
+        audio.play().catch(() => {});
+      }
+    };
+
+    document.addEventListener('click', handleClick);
+    return () => {
+      audio.pause();
+      document.removeEventListener('click', handleClick);
+    };
+  }, []);
+
   const targetRef = useRef<number>(0);
   const isDraggingRef = useRef<boolean>(false);
   const dragStartXRef = useRef<number>(0);
