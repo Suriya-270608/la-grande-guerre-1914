@@ -1,0 +1,6 @@
+{
+  "name": "France in World War I — 6 Historical Archive Volumes",
+  "description": "Interactive 3D archival shelf exploring France's role in World War I across 6 dedicated volumes: general introduction, key battles, prominent leaders, weapons and machines, the lasting legacy, and an entire-story 5-minute chronicle.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
